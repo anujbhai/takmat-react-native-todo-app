@@ -4,18 +4,21 @@ import React, {
   useState
 } from "react";
 import {
-  Center,
   VStack,
   useColorModeValue,
   Fab,
-  Icon
+  Icon,
+  Text,
 } from "native-base";
 import {AntDesign} from "@expo/vector-icons";
 import shortid from "shortid";
 
 import AnimatedColorBox from "../components/animated-colorbox";
-import ThemeToggle from "../components/theme-toggle";
 import TaskList from "../components/task-list";
+import Masthead from "../components/masthead";
+import Navbar from "../components/navbar";
+
+const image = require("../assets/pexels-rostislav-uzunov-5011647.jpg");
 
 const initialData = [
   {
@@ -84,10 +87,21 @@ function MainScreen() {
       bg={useColorModeValue("warmGray.50", "primary.900")}
       w="full"
     >
+      <Masthead
+        title="Hi, Welcome!"
+        image={image}
+      >
+        <Navbar />
+      </Masthead>
+
       <VStack
-        space={5}
-        alignItems="center"
-        w="full"
+        flex={2}
+        space={1}
+        mt="-20px"
+        borderTopLeftRadius="20px"
+        borderTopRightRadius="20px"
+        pt="20px"
+        bg={useColorModeValue("warmGray.50", "primary.900")}
       >
         <TaskList
           data={data}
@@ -98,8 +112,6 @@ function MainScreen() {
           onRemoveItem={handleRemoveItem}
           editingItemId={editingItemId}
         />
-
-        <ThemeToggle />
       </VStack>
     
       <Fab
